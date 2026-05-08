@@ -462,11 +462,11 @@ def main():
     # ⚠️ ВСТАВЬТЕ СЮДА ВАШ ТОКЕН В КАВЫЧКАХ:
     BOT_TOKEN = ""
     
-    if not TOKEN or "ВАШ_ТОКЕН" in TOKEN:
+    if not BOT_TOKEN or "ВАШ_ТОКЕН" in BOT_TOKEN:
         print("❌ Вставьте ваш реальный токен в переменную TOKEN!")
         return
 
-    application = Application.builder().token(TOKEN).build()
+    application = Application.builder().token(BOT_TOKEN).build()
     
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", start))
