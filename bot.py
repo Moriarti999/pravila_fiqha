@@ -455,23 +455,21 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def main():
     logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
     
-    #  Поддержка GitHub Actions и локального запуска
-    BOT_TOKEN = os.getenv("BOT_TOKEN")
+    # ⚠️ ВСТАВЬТЕ ВАШ ТОКЕН СЮДА
+    BOT_TOKEN = "" 
     
     if not BOT_TOKEN:
-        print("❌ ОШИБКА: Переменная окружения BOT_TOKEN не задана.")
-        print("💡 Для GitHub: добавьте секрет BOT_TOKEN в Settings -> Secrets.")
-        print("💡 Для локально: замените os.getenv на BOT_TOKEN = 'ваш_токен'")
+        print("❌ ОШИБКА: Токен пустой. Вставьте ваш токен в переменную BOT_TOKEN!")
         return
 
     application = Application.builder().token(BOT_TOKEN).build()
+    
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", start))
     application.add_handler(CallbackQueryHandler(button_handler))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, text_handler))
     
-    print("✅ Бот запущен! Нажмите Ctrl+C для остановки.")
-    print("📖 Фикх Правила — 220 правил")
+    print("✅ Бот запущен!")
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == "__main__":
